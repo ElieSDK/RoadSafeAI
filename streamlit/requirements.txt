@@ -1,0 +1,14 @@
+streamlit
+torch
+torchvision
+torchsampler
+Pillow
+pandas
+folium
+streamlit-folium
+geopy
+matplotlib
+seaborn
+huggingface_hub
+piexif
+python-dotenv
