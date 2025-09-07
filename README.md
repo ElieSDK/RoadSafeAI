@@ -21,6 +21,25 @@ There is also a Streamlit web application in the `streamlit` folder that require
 ## Dataset
 The dataset used for training can be downloaded from [Zenodo](https://zenodo.org/records/11449977).
 
+**Class Distribution**  
+The dataset is **imbalanced**: some surface material types (e.g., asphalt) and quality levels (e.g., good) have far more samples than others (e.g., concrete, very bad).  
+To reduce this bias, we applied an **oversampling technique** during training, so that underrepresented classes contributed more equally to the learning process.
+
+![Class Distribution](figures/classes_distribution.png)
+
+---
+
+## Model Performance
+
+During training and evaluation, the following results were observed:
+
+- **Confusion Matrices (Validation Set)**  
+  These show the model’s predictions versus the true labels:  
+  - *Material*: frequent classes like **asphalt** are predicted more accurately than rarer ones such as **concrete** or **unpaged**.  
+  - *Quality*: common categories like **good** and **intermediate** are recognized better than minority ones such as **very bad**.  
+
+  ![Confusion Matrix](figures/confusion_matrix.png)
+
 ---
 
 ## Pretrained Model
