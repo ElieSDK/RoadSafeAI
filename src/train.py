@@ -74,7 +74,7 @@ for epoch in range(1, EPOCHS+1):
     if metric > best_metric:
         best_metric, wait = metric, 0
         save_checkpoint(features, mat_head, qual_head, "best_model.pt")
-        flag = "✅ best updated"
+        flag = "Best updated"
     else:
         wait += 1; flag = ""
 
@@ -82,7 +82,7 @@ for epoch in range(1, EPOCHS+1):
           f"mat_acc={mat_acc:.3f}  qual_acc={qual_acc:.3f}  avg_acc={metric:.3f}{flag}")
 
     if wait >= PATIENCE:
-        print("⏹️ Early stopping")
+        print("Early stopping")
         break
 
 # --- Save to Drive ---
@@ -108,3 +108,4 @@ with torch.no_grad():
 plot_confusion_matrices(cm_mat, cm_qual, material_names, quality_names)
 plot_epoch_accuracy(epoch_metrics)
 print_file_creation("best_model.pt")
+
