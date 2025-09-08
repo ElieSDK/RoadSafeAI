@@ -33,6 +33,8 @@ To reduce this bias, we applied an **oversampling technique** during training, s
 
 ## Model Performance
 
+EfficientNet-b7 achieved an accuracy of 88%.
+
 During training and evaluation, the following results were observed:
 
 - **Confusion Matrices (Validation Set)**  
