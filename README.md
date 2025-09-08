@@ -2,6 +2,8 @@
 
 RoadSafeAI is an AI-powered system for analyzing road surface conditions and generating instant reports. It uses a multi-task model to classify street surface types and surface quality from images. The system supports imbalanced datasets, early stopping, and outputs confusion matrices and accuracy plots. The trained model can also be used to generate predictions on new road images.
 
+The Streamlit application can be accessed at [https://roadsafe.streamlit.app/](https://roadsafe.streamlit.app/)
+
 ---
 
 ## Requirements
@@ -85,7 +87,7 @@ python src/train.py
 ---
 
 ## Streamlit Web App
-The project includes a Streamlit web application available at [https://roadsafe.streamlit.app/](https://roadsafe.streamlit.app/). The `streamlit` folder contains:
+The project includes a Streamlit web application. The `streamlit` folder contains:
 - `app.py` → Streamlit app code
 - `city.csv` → Sample input data for the app
 - `requirements.txt` → Dependencies for running the web app
