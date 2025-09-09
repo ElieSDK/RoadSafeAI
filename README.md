@@ -92,7 +92,7 @@ python src/train.py
 The project includes a Streamlit web application. The `streamlit` folder contains:
 - `app.py` → Streamlit app code
 - `city.csv` → Sample input data for the app
-- `requirements.txt` → Dependencies for running the web app
+- `requirements.txt` → Dependencies for running the web app.
 
 Run the app locally with:
 ```bash
