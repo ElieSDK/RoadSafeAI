@@ -55,8 +55,8 @@ The output of the trained model can be downloaded from [Hugging Face](https://hu
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/eliesdk/my_project.git
-cd my_project
+git clone https://github.com/eliesdk/RoadSafeAI.git
+cd RoadSafeAI
 ```
 
 2. Install dependencies:
