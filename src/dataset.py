@@ -34,12 +34,17 @@ def collate(batch):
         imgs.append(img); mats.append(m); quals.append(q)
     return torch.stack(imgs), (torch.tensor(mats), torch.tensor(quals))
 
-def get_dataloaders(dataset, batch_size):
+def get_dataloaders(dataset, batch_size, val_ratio=0.1, test_ratio=0.1):
     idx = torch.randperm(len(dataset))
-    n_tr = int(0.8 * len(dataset))
+    
+    n_test = int(test_ratio * len(dataset))
+    n_val  = int(val_ratio * len(dataset))
+    n_tr   = len(dataset) - n_val - n_test
+    
     train_set = [dataset[i] for i in idx[:n_tr]]
-    val_set   = [dataset[i] for i in idx[n_tr:]]
-
+    val_set   = [dataset[i] for i in idx[n_tr:n_tr+n_val]]
+    test_set  = [dataset[i] for i in idx[n_tr+n_val:]]
+    
     train_sampler = ImbalancedDatasetSampler(
         train_set, callback_get_label=lambda ds: [x[1] for x in ds]
     )
@@ -48,5 +53,7 @@ def get_dataloaders(dataset, batch_size):
                           collate_fn=collate, num_workers=0)
     val_dl   = DataLoader(val_set, batch_size=batch_size, shuffle=False,
                           collate_fn=collate, num_workers=0)
+    test_dl  = DataLoader(test_set, batch_size=batch_size, shuffle=False,
+                          collate_fn=collate, num_workers=0)
 
-    return train_dl, val_dl
+    return train_dl, val_dl, test_dl
