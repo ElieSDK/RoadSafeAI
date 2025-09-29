@@ -95,7 +95,7 @@ cm_qual = torch.zeros(NUM_QUALITIES, NUM_QUALITIES, dtype=torch.int64)
 
 features.eval(); mat_head.eval(); qual_head.eval()
 with torch.no_grad():
-    for imgs, (mat_y, qual_y) in test_dl:  # use test_dl
+    for imgs, (mat_y, qual_y) in test_dl:
         imgs, mat_y, qual_y = imgs.to(device), mat_y.to(device), qual_y.to(device)
         feats = features(imgs).flatten(1)
         m_logits, q_logits = mat_head(feats), qual_head(feats)
@@ -105,7 +105,6 @@ with torch.no_grad():
         for t, p in zip(qual_y.view(-1), q_pred.view(-1)):
             cm_qual[t.long(), p.long()] += 1
 
-# Compute and print final test accuracy after all batches
 mat_acc = cm_mat.diag().sum().item() / cm_mat.sum().item()
 qual_acc = cm_qual.diag().sum().item() / cm_qual.sum().item()
 print(f"Final Test Accuracy | Material: {mat_acc:.3f} | Quality: {qual_acc:.3f}")
@@ -113,3 +112,4 @@ print(f"Final Test Accuracy | Material: {mat_acc:.3f} | Quality: {qual_acc:.3f}"
 plot_confusion_matrices(cm_mat, cm_qual, material_names, quality_names)
 plot_epoch_accuracy(epoch_metrics)
 print_file_creation("best_model.pt")
+
