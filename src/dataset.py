@@ -46,7 +46,8 @@ def get_dataloaders(dataset, batch_size, val_ratio=0.1, test_ratio=0.1):
     test_set  = [dataset[i] for i in idx[n_tr+n_val:]]
     
     train_sampler = ImbalancedDatasetSampler(
-        train_set, callback_get_label=lambda ds: [x[1] for x in ds]
+        train_set,
+        callback_get_label=lambda ds: [x[1]*len(sub_class) + x[2] for x in ds]
     )
 
     train_dl = DataLoader(train_set, batch_size=batch_size, sampler=train_sampler,
@@ -57,3 +58,4 @@ def get_dataloaders(dataset, batch_size, val_ratio=0.1, test_ratio=0.1):
                           collate_fn=collate, num_workers=0)
 
     return train_dl, val_dl, test_dl
+
